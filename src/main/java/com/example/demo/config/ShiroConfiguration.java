@@ -1,13 +1,14 @@
 package com.example.demo.config;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 这是Shiro 配置类 （1）需要配置ShiroFilterFactoryBean （2）配置SecurityManager
@@ -68,7 +69,28 @@ public class ShiroConfiguration {
 	@Bean
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+		securityManager.setRealm(myShiroRealm());
 		return securityManager;
+	}
+
+	@Bean
+	public MyShiroRealm myShiroRealm() {
+		MyShiroRealm myShiroRealm = new MyShiroRealm();
+		myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+		return myShiroRealm;
+	}
+
+	/**
+	 * 密码加密算法.
+	 *
+	 * @return
+	 */
+	@Bean
+	public HashedCredentialsMatcher hashedCredentialsMatcher() {
+		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+		hashedCredentialsMatcher.setHashAlgorithmName("md5");//加密算法.
+		hashedCredentialsMatcher.setHashIterations(2);//散列的次数.
+		return hashedCredentialsMatcher;
 	}
 
 }

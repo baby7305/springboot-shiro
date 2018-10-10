@@ -129,6 +129,11 @@ public class SysUser implements Serializable {
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
     // setters here, do not remove
 
+    //为了密码的更安全. username+salt;
+    public String getUserNameAndSalt() {
+        return this.userName + this.userSalt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
