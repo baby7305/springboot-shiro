@@ -74,4 +74,10 @@ public class SysUserServiceImpl implements SysUserService {
         log.debug("Request to delete SysUser : {}", id);
         sysUserRepository.deleteById(id);
     }
+
+    @Override
+    public SysUser findByUserName(String name) {
+        return sysUserRepository.findByUserName(name);
+    }
+
 }

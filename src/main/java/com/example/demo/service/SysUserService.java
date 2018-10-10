@@ -39,4 +39,7 @@ public interface SysUserService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
+    SysUser findByUserName(String name);
+
 }

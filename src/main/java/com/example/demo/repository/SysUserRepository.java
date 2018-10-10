@@ -20,4 +20,7 @@ public interface SysUserRepository extends JpaRepository<SysUser, Long> {
     @Query("select sys_user from SysUser sys_user left join fetch sys_user.sysRoles where sys_user.id =:id")
     SysUser findOneWithEagerRelationships(@Param("id") Long id);
 
+    //通过用户名查找用户信息.
+    SysUser findByUserName(String name);
+
 }
