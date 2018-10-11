@@ -16,6 +16,14 @@ spring:
         show-sql: true
         hibernate:
             ddl-auto: update
-
+    http:
+        encoding:
+            charset: UTF-8 
+            force: true  
+            enabled: true  
+    messages:
+        encoding: UTF-8 
 server:
     port: 8080
+    tomcat:
+        uri-encoding: UTF-8 

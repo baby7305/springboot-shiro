@@ -4,23 +4,48 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Insert title here</title>
+
+	<link rel="stylesheet" href="/css/style.css" />
+	<script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
 </head>
 
 <body>
 
-	错误信息：
-	<h4 th:text="${msg}"></h4>
-	<form action="" method="post">
-		<p>账号：
-			<input type="text" name="username" value="admin" />
-		</p>
-		<p>密码：
-			<input type="text" name="password" value="123456" />
-		</p>
-		<p>
-			<input type="submit" value="登录" />
-		</p>
-	</form>
+	<div class="login">
+		<img alt="" src="/img/login.jpg" />
+		<br /> 错误信息：
+		<h4 th:text="${msg}"></h4>
+		<form action="" method="post" onsubmit="return checkForm()">
+			<p>账号：
+				<input type="text" name="username" value="admin" />
+			</p>
+			<p>密码：
+				<input type="text" name="password" value="123456" />
+			</p>
+			<p>
+				<input type="submit" value="登录" />
+			</p>
+		</form>
+	</div>
+
+	<script>
+		function checkForm() {
+
+			//获取到账号和密码.
+			var username = $("#username").val();
+			var password = $("#password").val();
+			if (username == '') {
+				alert("请输入账号");
+				return false;
+			}
+			if (password == '') {
+				alert("请输入密码");
+				return false;
+			}
+
+			return true;
+		}
+	</script>
 
 </body>
 
