@@ -26,15 +26,15 @@ public class MyShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         /*
-         *  1、 获取用户输入的账号.
-         *  2、通过username 从数据库中进行查找，活到UserInfo对象.
+         *  1、获取用户输入的账号.
+         *  2、通过userName 从数据库中进行查找，找到SysUser对象.
          *  3、加密. 使用SimpleAuthenticationInfo 进行身份处理.
          *  4、返回身份处理对象.
          */
         //1、 获取用户输入的账号.
         String username = (String) token.getPrincipal();
 
-        //2、通过username 从数据库中进行查找，活到UserInfo对象.
+        //2、通过userName 从数据库中进行查找，找到SysUser对象.
         SysUser sysUser = sysUserService.findByUserName(username);
         if (sysUser == null) {
             return null;
